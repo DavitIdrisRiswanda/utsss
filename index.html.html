@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inside U Mood Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        .mood-container {
+            margin: 20px 0;
+        }
+        .mood-container label {
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Inside U Mood Tracker</h1>
+
+    <!-- Login Screen -->
+    <div id="login">
+        <button onclick="showForm()">Login</button>
+    </div>
+
+    <!-- Mood Tracker Form -->
+    <div id="moodForm" style="display: none;">
+        <div class="mood-container">
+            <input type="checkbox" id="CbSenang">
+            <label for="CbSenang">Senang</label>
+        </div>
+        <div class="mood-container">
+            <input type="checkbox" id="CbSedih">
+            <label for="CbSedih">Sedih</label>
+        </div>
+        <div class="mood-container">
+            <input type="checkbox" id="CbMarah">
+            <label for="CbMarah">Marah</label>
+        </div>
+        <div class="mood-container">
+            <input type="checkbox" id="CbMalas">
+            <label for="CbMalas">Malas</label>
+        </div>
+        <div class="mood-container">
+            <input type="checkbox" id="CbTakut">
+            <label for="CbTakut">Takut</label>
+        </div>
+        <div class="mood-container">
+            <input type="checkbox" id="CbIri">
+            <label for="CbIri">Iri</label>
+        </div>
+        <div class="mood-container">
+            <input type="checkbox" id="CbMalu">
+            <label for="CbMalu">Malu</label>
+        </div>
+        <div class="mood-container">
+            <input type="checkbox" id="CbCemas">
+            <label for="CbCemas">Cemas</label>
+        </div>
+        <div class="mood-container">
+            <input type="checkbox" id="CbJijik">
+            <label for="CbJijik">Jijik</label>
+        </div>
+
+        <button onclick="submitMood()">Submit Mood</button>
+    </div>
+
+    <div id="messageContainer" class="message"></div>
+
+    <script>
+        const moodMessages = {
+            Senang: "Terus pertahankan kebahagiaanmu hari ini!",
+            Sedih: "Tidak apa-apa merasa sedih. Semua akan membaik seiring waktu.",
+            Marah: "Coba tarik napas dalam-dalam. Kamu akan merasa lebih tenang.",
+            Malas: "Yuk pelan-pelan mulai dari hal kecil. Semangat!",
+            Takut: "Kamu lebih kuat dari rasa takutmu. Percayalah.",
+            Iri: "Setiap orang punya waktunya masing-masing. Fokus pada dirimu.",
+            Malu: "Semua orang pernah merasa malu. Itu bagian dari belajar.",
+            Cemas: "Tenangkan diri dulu ya. Cemas itu wajar, tapi jangan biarkan menguasai.",
+            Jijik: "Kalau ada yang bikin nggak nyaman, jauhi sejenak. Kamu berhak merasa aman."
+        };
+
+        function showForm() {
+            document.getElementById("login").style.display = "none";
+            document.getElementById("moodForm").style.display = "block";
+        }
+
+        function submitMood() {
+            const moods = [];
+            const messages = [];
+
+            // Check each mood checkbox
+            if (document.getElementById("CbSenang").checked) {
+                moods.push("Senang");
+                messages.push(moodMessages.Senang);
+            }
+            if (document.getElementById("CbSedih").checked) {
+                moods.push("Sedih");
+                messages.push(moodMessages.Sedih);
+            }
+            if (document.getElementById("CbMarah").checked) {
+                moods.push("Marah");
+                messages.push(moodMessages.Marah);
+            }
+            if (document.getElementById("CbMalas").checked) {
+                moods.push("Malas");
+                messages.push(moodMessages.Malas);
+            }
+            if (document.getElementById("CbTakut").checked) {
+                moods.push("Takut");
+                messages.push(moodMessages.Takut);
+            }
+            if (document.getElementById("CbIri").checked) {
+                moods.push("Iri");
+                messages.push(moodMessages.Iri);
+            }
+            if (document.getElementById("CbMalu").checked) {
+                moods.push("Malu");
+                messages.push(moodMessages.Malu);
+            }
+            if (document.getElementById("CbCemas").checked) {
+                moods.push("Cemas");
+                messages.push(moodMessages.Cemas);
+            }
+            if (document.getElementById("CbJijik").checked) {
+                moods.push("Jijik");
+                messages.push(moodMessages.Jijik);
+            }
+
+            // If no mood is selected
+            if (moods.length === 0) {
+                alert("Harap isi mood terlebih dahulu!");
+                return;
+            }
+
+            // Show the messages
+            const messageContainer = document.getElementById("messageContainer");
+            messageContainer.innerHTML = "Mood Anda: " + moods.join(", ") + "<br><br>" + messages.join("<br>");
+            document.getElementById("moodForm").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
